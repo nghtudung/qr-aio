@@ -1,0 +1,17 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    environment:
+      QR_AIO_CORS_ORIGINS: '["http://localhost:5173","http://localhost:8080"]'
+      QR_AIO_RATE_LIMIT: "120/minute"
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
